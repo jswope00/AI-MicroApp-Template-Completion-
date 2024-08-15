@@ -20,7 +20,7 @@ fields = {
         "key": "exam_name"
     },
     "priorities": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Negotiates priorities & sets agenda",
         "min_value": 0,
         "max_value": 4,
@@ -29,34 +29,34 @@ fields = {
         "key": "priorities"
     },
     "timeline": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Timeline",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 4,
         "step": 1,
         "key": "timeline"
     },
     "organization": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Organization",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 4,
         "step": 1,
         "key": "organization"
     },
     "transition": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Transitional statement",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 3,
         "step": 1,
         "key": "transition"
     },
     "question_types": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Questioning skills – types of questions",
         "min_value": 0,
         "max_value": 4,
@@ -65,35 +65,35 @@ fields = {
         "key": "question_types"
     },
     "question_relevance": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Questioning skills – Relevance and Content",
         "min_value": 0,
-        "max_value": 4,
+        "max_value": 3,
         "value": 2,
         "step": 1,
         "key": "question_relevance"
     },
 
     "question_summarizing": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Questioning Skills – Summarizing",
         "min_value": 0,
-        "max_value": 4,
+        "max_value": 2,
         "value": 2,
         "step": 1,
         "key": "question_summarizing"
     },
     "question_verification": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Questioning Skills – Verification of Patient Information",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 4,
         "step": 1,
         "key": "question_verification"
     },
     "support_systems": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Support Systems",
         "min_value": 0,
         "max_value": 4,
@@ -102,7 +102,7 @@ fields = {
         "key": "support_systems"
     },
     "education": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Patient’s Education & Understanding",
         "min_value": 0,
         "max_value": 4,
@@ -111,29 +111,29 @@ fields = {
         "key": "education"
     },
     "consent": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Informed Consent for Investigations & Procedures",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 4,
         "step": 1,
         "key": "consent"
     },
     "shared_plan": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Achieve a Shared Plan",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 3,
         "step": 1,
         "key": "shared_plan"
     },
     "closure": {
-        "type": "number_input",
+        "type": "slider",
         "label": "Closure",
         "min_value": 0,
         "max_value": 4,
-        "value": 2,
+        "value": 4,
         "step": 1,
         "key": "closure"
     }
@@ -148,15 +148,15 @@ actions = {
 }
 
 LLM_CONFIGURATIONS = {
-    "gpt-3.5-turbo": {
-        "model": "gpt-3.5-turbo-0125",
+    "gpt-4o-mini": {
+        "model": "gpt-4o-mini",
         "frequency_penalty": 0,
         "max_tokens": 1000,
         "presence_penalty": 0,
         "temperature": .75,
         "top_p": 1,
-        "price_input_token_1M": 0.50,
-        "price_output_token_1M": 1.50
+        "price_input_token_1M": 0.150,
+        "price_output_token_1M": 0.60
     },
     "gpt-4-turbo": {
         "model": "gpt-4-turbo",
@@ -338,6 +338,7 @@ def generate_prompt(config):
     improvement_feedback = "\n".join(feedback["improvement"]) if feedback["improvement"] else "No specific areas for improvement identified."
     
     prompt = f"""
+You provide narrative written feedback to students in a simulated pateient scenario based on a numeric rubric and suggested dialogue. You aim to provide positive and constructive feedback that is specific. And you provide improvement plans that are specific and actionable. 
 Please rewrite the following narrative clinical feedback for a medical student who has completed a clinical scenario. Organize the feedback into positive aspects first, followed by areas for improvement. Use depersonalized language and passive voice:
 
 Positive Feedback:

@@ -84,7 +84,7 @@ def build_fields(i, my_dict):
 def ai_handler():
     ai_prompt = build_prompt()
     selected_llm = st.session_state['selected_llm']
-    if selected_llm in ["gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"]:
+    if selected_llm in ["gpt-4o-mini", "gpt-4-turbo", "gpt-4o"]:
         llm_configuration = LLM_CONFIGURATIONS[selected_llm]
         try:
             openai_client = OpenAI(api_key=openai_api_key)
